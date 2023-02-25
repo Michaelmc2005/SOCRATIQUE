@@ -101,24 +101,23 @@ function updateTime() {
 
 setInterval(updateTime, 1000);
 const inputField = document.getElementById('input-field');
-//const paragraph = document.getElementById('.panel')
+
 inputField.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     centralNode.textContent = inputField.value
-    // Define the prompt you want to use
+    
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
-    //const prompt = "write me a paragraph about irish drama"
-    // Define the API endpoint and your API key
+    
     const url = "https://api.openai.com/v1/completions"
     const apiKey = "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"
 
-    // Define the headers for your request
+
     const headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${apiKey}`
     }
 
-    // Define the request body, including the temperature parameter
+
     const requestBody = JSON.stringify({
       prompt: prompt,
       model: "text-davinci-003",
@@ -139,9 +138,8 @@ inputField.addEventListener('keypress', function (e) {
       // Handle the response from the API
       console.log("Received response from OpenAI API:", data)
       const result = data.choices[0].text
-      console.log(result)
-      //paragraph.textContent = result
-      // assuming your data is stored in a variable called dataString
+      console.log(result) 
+      
       const dataArray = result.split("\n"); // split the string into an array of substrings
 
       // remove leading empty lines from the array
