@@ -11,6 +11,79 @@ body {
   animation: slide-up 1s;
 }
 
+.input-container {
+  position: relative;
+  z-index: 6;
+}
+
+.input-container input {
+  width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #eee;
+  font-size: 16px;
+  position: relative;
+  top: 150px;
+  z-index: 6;
+}
+
+.input-container input:focus::placeholder {
+  color: transparent;
+  z-index: 6;
+}
+
+.input-container input:focus {
+  outline: none;
+  z-index: 6;
+}
+
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 16px;
+  z-index: 6;
+}
+
+.clock {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: -10px;
+}
+
+#blob {
+  background-color: white;
+  height: 34vmax;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 25%;
+  background: linear-gradient(to right, lightsalmon, teal);
+  animation: rotate 20s infinite;
+  opacity: 0.8;
+}
+#blur {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  backdrop-filter: blur(12vmax);
+}
 .container:active {
   cursor: grabbing;
 }
@@ -83,6 +156,7 @@ body {
   text-align: center;
 }
 
+
 .node-4 {
   top: 85%;
   left: 50%;
@@ -128,32 +202,32 @@ body {
 
 .line:nth-child(1) {
   transform: rotate(0deg);
-  height: 300px;
+  height: 30%;
 }
 
 .line:nth-child(2) {
   transform: rotate(70deg);
-  height: 500px;
+  height: 70%;
 }
 
 .line:nth-child(3) {
   transform: rotate(110deg);
-  height: 500px;
+  height: 70%;
 }
 
 .line:nth-child(4) {
   transform: rotate(180deg);
-  height: 300px;
+  height: 30%;
 }
 
 .line:nth-child(5) {
   transform: rotate(250deg);
-  height: 500px;
+  height: 70%;
 }
 
 .line:nth-child(6) {
   transform: rotate(290deg);
-  height: 500px;
+  height: 70%;
 }
 @keyframes fade-in {
   from { opacity: 0; }

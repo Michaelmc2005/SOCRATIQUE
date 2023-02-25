@@ -78,22 +78,96 @@ surroundingNodes.forEach(node => {
     container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
   });
 });
-function addGlowOnHover(container) {
-  container.addEventListener("mousemove", (event) => {
-    // Get the mouse coordinates relative to the container's position
-    const rect = container.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
 
-    // Calculate the size of the gradient based on the container's dimensions
-    const gradientSize = Math.min(container.offsetWidth, container.offsetHeight) * 0.2;
+const blob = document.getElementById("blob");
 
-    // Set the container's background to a radial gradient with a glowing effect
-    container.style.backgroundImage = `radial-gradient(circle ${gradientSize}px at ${mouseX}px ${mouseY}px, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 30%)`;  });
-
-  container.addEventListener("mouseleave", (event) => {
-    // Remove the glowing effect when the mouse leaves the container
-    container.style.backgroundImage = "none";
-  });
+window.onpointermove = event => { 
+  const { clientX, clientY } = event;
+  
+  blob.animate({
+    left: `${clientX}px`,
+    top: `${clientY}px`
+  }, { duration: 3000, fill: "forwards" });
 }
-addGlowOnHover(container);
+function updateTime() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+
+setInterval(updateTime, 1000);
+const inputField = document.getElementById('input-field');
+//const paragraph = document.getElementById('.panel')
+inputField.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    centralNode.textContent = inputField.value
+    // Define the prompt you want to use
+    const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
+    //const prompt = "write me a paragraph about irish drama"
+    // Define the API endpoint and your API key
+    const url = "https://api.openai.com/v1/completions"
+    const apiKey = "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"
+
+    // Define the headers for your request
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+    }
+
+    // Define the request body, including the temperature parameter
+    const requestBody = JSON.stringify({
+      prompt: prompt,
+      model: "text-davinci-003",
+      max_tokens: 100,
+      n: 1,
+      temperature: 0.5 // Change this value to adjust the temperature
+    })
+
+    // Send the request to the OpenAI API
+    console.log("Sending request to OpenAI API...")
+    fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: requestBody
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the API
+      console.log("Received response from OpenAI API:", data)
+      const result = data.choices[0].text
+      console.log(result)
+      //paragraph.textContent = result
+      // assuming your data is stored in a variable called dataString
+      const dataArray = result.split("\n"); // split the string into an array of substrings
+
+      // remove leading empty lines from the array
+      while (dataArray.length > 0 && dataArray[0].trim() === "") {
+        dataArray.shift();
+      }
+
+      // loop through the array and remove the numbers
+      for (let i = 0; i < dataArray.length; i++) {
+        dataArray[i] = dataArray[i].replace(/^\d+\./, "").trim();
+      }
+
+      // now the dataArray should contain the data as an array with no numbers and no leading empty lines
+      console.log(dataArray);
+      surroundingNodes.forEach((node, index) => {
+        // set the text content of each node to the corresponding value from the array
+        node.textContent = dataArray[index];
+      });
+
+      
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      console.error("Error from OpenAI API:", error)
+    })
+
+      }
+      
+});

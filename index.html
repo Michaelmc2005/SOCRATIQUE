@@ -5,7 +5,18 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div id="blob"></div>
+    <div id="blur"></div>
     <div class="container">
+      <div class="input-container">
+        <input id="input-field" type="text" placeholder="Create a mindmap about:"/>
+      </div>
+      <div class="clock">
+        <span id="hours">00</span> :
+        <span id="minutes">00</span> :
+        <span id="seconds">00</span>
+      </div>
+      
       <div class="circle" >
         <div class="line"></div>
         <div class="line"></div>
@@ -13,14 +24,15 @@
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
-      </div> 
-      <div class="central-node">Sustainable Agriculture</div>
-      <div class="surrounding-node node-1">Organic Farming</div>
-      <div class="surrounding-node node-2">Crop Rotation</div>
-      <div class="surrounding-node node-3">Agroforestry</div>
-      <div class="surrounding-node node-4">Water Conservation</div>
-      <div class="surrounding-node node-5">Integrated Pest Management</div>
-      <div class="surrounding-node node-6">Soil Conservation</div>
+      </div>
+
+      <div class="central-node">Central Node</div>
+      <div class="surrounding-node node-1"></div>
+      <div class="surrounding-node node-2"></div>
+      <div class="surrounding-node node-3"></div>
+      <div class="surrounding-node node-4"></div>
+      <div class="surrounding-node node-5"></div>
+      <div class="surrounding-node node-6"></div>
     </div>
     <script src="script.js"></script>
   </body>
