@@ -47,21 +47,21 @@ function setTranslate(xPos, yPos, el) {
 
 const centralNode = document.querySelector('.central-node');
 const surroundingNodes = document.querySelectorAll('.surrounding-node');
+const surroundingexpandNode = document.querySelectorAll(".surrounding-nodeexpand");
 
-// Function to reposition the container element so that the central node is centered
 function centerContainer() {
   const container = document.querySelector('.container');
   container.style.transition = 'transform 0.5s ease';
   container.style.transform = 'translate(0, 0)';
 }
 
-// Add event listener to the centralNode element
 centralNode.addEventListener('click', () => {
   centerContainer();
 });
 
 surroundingNodes.forEach(node => {
   node.addEventListener('click', () => {
+
     const nodePosition = node.getBoundingClientRect();
     const nodeX = nodePosition.x + nodePosition.width / 2;
     const nodeY = nodePosition.y + nodePosition.height / 2;
@@ -78,6 +78,9 @@ surroundingNodes.forEach(node => {
     container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
   });
 });
+
+
+
 
 const blob = document.getElementById("blob");
 
@@ -126,7 +129,6 @@ inputField.addEventListener('keypress', function (e) {
       temperature: 0.5 // Change this value to adjust the temperature
     })
 
-    // Send the request to the OpenAI API
     console.log("Sending request to OpenAI API...")
     fetch(url, {
       method: "POST",
@@ -135,34 +137,28 @@ inputField.addEventListener('keypress', function (e) {
     })
     .then(response => response.json())
     .then(data => {
-      // Handle the response from the API
       console.log("Received response from OpenAI API:", data)
       const result = data.choices[0].text
       console.log(result) 
       
       const dataArray = result.split("\n"); // split the string into an array of substrings
 
-      // remove leading empty lines from the array
       while (dataArray.length > 0 && dataArray[0].trim() === "") {
         dataArray.shift();
       }
 
-      // loop through the array and remove the numbers
       for (let i = 0; i < dataArray.length; i++) {
         dataArray[i] = dataArray[i].replace(/^\d+\./, "").trim();
       }
 
-      // now the dataArray should contain the data as an array with no numbers and no leading empty lines
       console.log(dataArray);
       surroundingNodes.forEach((node, index) => {
-        // set the text content of each node to the corresponding value from the array
         node.textContent = dataArray[index];
       });
 
       
     })
     .catch(error => {
-      // Handle any errors that occur during the request
       console.error("Error from OpenAI API:", error)
     })
 
