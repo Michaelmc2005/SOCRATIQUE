@@ -253,7 +253,7 @@ html, body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .node-7 {
