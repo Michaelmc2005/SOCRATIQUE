@@ -80,7 +80,7 @@ surroundingNodes.forEach(node => {
     const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information and any necessary context"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -134,7 +134,6 @@ surroundingNodes.forEach(node => {
       for (let i = 0; i < dataArray.length; i++) {
         dataArray[i] = dataArray[i].replace(/^\d+\./, "").trim();
       }
-      
       surroundingexpandNode[chooseEXPAND].textContent = dataArray;  
 
       
@@ -175,12 +174,13 @@ const inputField = document.getElementById('input-field');
 
 inputField.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
+    
     centralNode.textContent = inputField.value
     
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -192,7 +192,7 @@ inputField.addEventListener('keypress', function (e) {
     const requestBody = JSON.stringify({
       prompt: prompt,
       model: "text-davinci-003",
-      max_tokens: 100,
+      max_tokens: 300,
       n: 1,
       temperature: 0.5 // Change this value to adjust the temperature
     })
@@ -203,6 +203,7 @@ inputField.addEventListener('keypress', function (e) {
       headers: headers,
       body: requestBody
     })
+
     .then(response => response.json())
     .then(data => {
       console.log("Received response from OpenAI API:", data)
