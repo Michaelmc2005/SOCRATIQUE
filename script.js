@@ -74,19 +74,6 @@ surroundingNodes.forEach(node => {
     const distanceX = centralNodeX - nodeX;
     const distanceY = centralNodeY - nodeY;
 
-    const container = document.querySelector('.container');
-    container.style.transition = 'transform 0.5s ease';
-    container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
-    const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information and any necessary context"
-    
-    const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
-
-
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiKey}`
-    }
     if(node.classList.contains("node-1")) {
       chooseEXPAND = 0;
     } else if(node.classList.contains("node-2")) {
@@ -105,10 +92,25 @@ surroundingNodes.forEach(node => {
       chooseEXPAND = 5;
     }
 
+    const container = document.querySelector('.container');
+    container.style.transition = 'transform 0.5s ease';
+    container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
+    const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information taking into account" + surroundingexpandNode[chooseEXPAND].textContent + "and the main topic being" + centralNode.textContent
+    
+    const url = "https://api.openai.com/v1/completions"
+    const apiKey = "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"
+
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+    }
+    
+
     const requestBody = JSON.stringify({
       prompt: prompt,
       model: "text-davinci-003",
-      max_tokens: 100,
+      max_tokens: 120,
       n: 1,
       temperature: 0.5 // Change this value to adjust the temperature
     })
@@ -180,7 +182,7 @@ inputField.addEventListener('keypress', function (e) {
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -192,7 +194,7 @@ inputField.addEventListener('keypress', function (e) {
     const requestBody = JSON.stringify({
       prompt: prompt,
       model: "text-davinci-003",
-      max_tokens: 300,
+      max_tokens: 120,
       n: 1,
       temperature: 0.5 // Change this value to adjust the temperature
     })
