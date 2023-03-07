@@ -80,7 +80,7 @@ surroundingNodes.forEach(node => {
     const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information and any necessary context"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -180,7 +180,7 @@ inputField.addEventListener('keypress', function (e) {
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
