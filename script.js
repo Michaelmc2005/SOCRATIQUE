@@ -91,14 +91,14 @@ surroundingNodes.forEach(node => {
     else if(node.classList.contains("node-6")){
       chooseEXPAND = 5;
     }
-
+    
     const container = document.querySelector('.container');
     container.style.transition = 'transform 0.5s ease';
     container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
     const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information taking into account" + surroundingexpandNode[chooseEXPAND].textContent + "and the main topic being" + centralNode.textContent
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -108,6 +108,7 @@ surroundingNodes.forEach(node => {
     
 
     const requestBody = JSON.stringify({
+      
       prompt: prompt,
       model: "text-davinci-003",
       max_tokens: 120,
@@ -182,7 +183,7 @@ inputField.addEventListener('keypress', function (e) {
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
