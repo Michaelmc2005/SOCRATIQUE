@@ -98,7 +98,7 @@ surroundingNodes.forEach(node => {
     const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information taking into account" + surroundingexpandNode[chooseEXPAND].textContent + "and the main topic being" + centralNode.textContent
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
