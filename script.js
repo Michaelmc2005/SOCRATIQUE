@@ -183,7 +183,7 @@ inputField.addEventListener('keypress', function (e) {
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
