@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 // Retrieve the system prompt from sessionStorage
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
