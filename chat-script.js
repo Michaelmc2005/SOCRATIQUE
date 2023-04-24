@@ -1,31 +1,21 @@
-
 // Retrieve the system prompt from sessionStorage
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
 async function fetchChatGPTResponse(prompt, message) {
-    const apiKey = process.env.NEXT_PUBLIC_OPENAI_KEY;
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    };
-  const requestBody = JSON.stringify({
-    model: 'gpt-3.5-turbo',
-    messages: [
-      { role: 'system', content: prompt },
-      { role: 'user', content: message },
-    ],
-    temperature: 0.9,
-  });
+  const requestBody = JSON.stringify({ prompt, message });
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+  const response = await fetch('/api/openai-api', {
     method: 'POST',
-    headers: headers,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: requestBody,
   });
 
   const data = await response.json();
   return data.choices[0].message.content.trim();
 }
+
 
 
 document.getElementById('chatForm').addEventListener('submit', async (event) => {
