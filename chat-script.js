@@ -1,9 +1,9 @@
+require('dotenv').config();
 // Retrieve the system prompt from sessionStorage
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
 async function fetchChatGPTResponse(prompt, message) {
-  const apiKey = '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';
-  const headers = {
+    const apiKey = process.env.OPENAI_KEY;  const headers = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${apiKey}`,
   };
