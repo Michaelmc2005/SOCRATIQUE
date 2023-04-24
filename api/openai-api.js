@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { prompt, message } = req.body;
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_KEY;
   const headers = {
