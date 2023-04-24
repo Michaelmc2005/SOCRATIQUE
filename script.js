@@ -21,7 +21,8 @@ function dragStart(e) {
   }
 }
 async function fetchMindMapResponse(prompt) {
-  const requestBody = JSON.stringify({ prompt });
+  const message = { role: 'system', content: prompt };
+  const requestBody = JSON.stringify({ prompt, message });
 
   const response = await fetch('./api/openai-api.js', {
     method: 'POST',
@@ -35,7 +36,7 @@ async function fetchMindMapResponse(prompt) {
   console.log('OpenAI API response:', data);
   console.log('Server response:', data);
 
-  return data.choices[0].text.trim();
+  return data.choices[0].message.content.trim();
 }
 
 function drag(e) {
