@@ -28,7 +28,7 @@ async function fetchMindMapResponse(prompt) {
     ],
   });
 
-  const response = await fetch("/api/openai-api", {
+  const response = await fetch("./api/openai-api.js", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
