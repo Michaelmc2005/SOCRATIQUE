@@ -98,7 +98,7 @@ surroundingNodes.forEach(node => {
     const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information taking into account" + surroundingexpandNode[chooseEXPAND].textContent + "and the main topic being" + centralNode.textContent
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
@@ -183,7 +183,7 @@ inputField.addEventListener('keypress', function (e) {
     const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
     
     const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const apiKey = "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"
 
 
     const headers = {
