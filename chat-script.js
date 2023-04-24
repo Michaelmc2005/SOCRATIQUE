@@ -13,6 +13,8 @@ async function fetchChatGPTResponse(prompt, message) {
   });
 
   const data = await response.json();
+  console.log('Server response:', data);
+
   return data.choices[0].message.content.trim();
 }
 
