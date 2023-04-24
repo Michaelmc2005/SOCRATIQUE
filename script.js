@@ -21,23 +21,32 @@ function dragStart(e) {
   }
 }
 async function fetchMindMapResponse(prompt) {
-  const message = { role: 'system', content: prompt };
-  const requestBody = JSON.stringify({ prompt, message });
+  const requestBody = JSON.stringify({
+    messages: [
+      { role: "system", content: prompt },
+      { role: "user", content: "generate a mind map" },
+    ],
+  });
 
-  const response = await fetch('./api/openai-api.js', {
-    method: 'POST',
+  const response = await fetch("./api/openai-api.js", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: requestBody,
   });
 
   const data = await response.json();
-  console.log('OpenAI API response:', data);
-  console.log('Server response:', data);
+  console.log("OpenAI API response:", data);
+  console.log("Server response:", data);
 
-  return data.choices[0].message.content.trim();
+  if (data.choices && data.choices.length > 0) {
+    return data.choices[0].message.content.trim();
+  } else {
+    throw new Error("Invalid response format");
+  }
 }
+
 
 function drag(e) {
   if (isDragging) {
