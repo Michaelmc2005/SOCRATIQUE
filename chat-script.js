@@ -4,7 +4,7 @@ const systemPrompt = sessionStorage.getItem('systemPrompt');
 async function fetchChatGPTResponse(prompt, message) {
   const requestBody = JSON.stringify({ prompt, message });
 
-  const response = await fetch('/api/openai-api', {
+  const response = await fetch('/functions/openai-api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
