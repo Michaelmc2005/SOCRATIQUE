@@ -1,3 +1,4 @@
+
 const container = document.querySelector('.container');
 let isDragging = false;
 let initialX;
@@ -18,6 +19,23 @@ function dragStart(e) {
   if (e.target === container) {
     isDragging = true;
   }
+}
+async function fetchMindMapResponse(prompt) {
+  const requestBody = JSON.stringify({ prompt });
+
+  const response = await fetch('./api/openai-api.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: requestBody,
+  });
+
+  const data = await response.json();
+  console.log('OpenAI API response:', data);
+  console.log('Server response:', data);
+
+  return data.choices[0].text.trim();
 }
 
 function drag(e) {
@@ -58,8 +76,8 @@ var chooseEXPAND = 0;
 centralNode.addEventListener('click', () => {
   centerContainer();
 });
-surroundingNodes.forEach(node => {
-  node.addEventListener('click', () => {
+surroundingNodes.forEach((node) => {
+  node.addEventListener("click", async () => {
     
 
     const nodePosition = node.getBoundingClientRect();
@@ -95,8 +113,15 @@ surroundingNodes.forEach(node => {
     const container = document.querySelector('.container');
     container.style.transition = 'transform 0.5s ease';
     container.style.transform = `translate(${distanceX}px, ${distanceY}px)`;
-    const prompt = "a paragraph about" + node.textContent + " that gives concise and useful information taking into account" + surroundingexpandNode[chooseEXPAND].textContent + "and the main topic being" + centralNode.textContent
-    
+    const prompt =
+    "a paragraph about" +
+    node.textContent +
+    " that gives concise and useful information taking into account" +
+    surroundingexpandNode[chooseEXPAND].textContent +
+    "and the main topic being" +
+    centralNode.textContent;
+
+  const result = await fetchMindMapResponse(prompt);    
     const url = "https://api.openai.com/v1/completions"
     const apiKey = "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"
 
@@ -175,13 +200,17 @@ function updateTime() {
 setInterval(updateTime, 1000);
 const inputField = document.getElementById('input-field');
 
-inputField.addEventListener('keypress', function (e) {
-  if (e.key === 'Enter') {
+inputField.addEventListener("keypress", async function (e) {
+  if (e.key === "Enter") {
     
     centralNode.textContent = inputField.value
     
-    const prompt = "subtopics about" + inputField.value + "that appear in a list one after another with six elements in the list"
-    
+    const prompt =
+    "subtopics about" +
+    inputField.value +
+    "that appear in a list one after another with six elements in the list";
+
+  const result = await fetchMindMapResponse(prompt);    
     const url = "https://api.openai.com/v1/completions"
     const apiKey = "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"
 
