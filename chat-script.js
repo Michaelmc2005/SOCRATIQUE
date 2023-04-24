@@ -3,11 +3,11 @@ require('dotenv').config();
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
 async function fetchChatGPTResponse(prompt, message) {
-    const apiKey = process.env.OPENAI_KEY;  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${apiKey}`,
-  };
-
+    const apiKey = process.env.NEXT_PUBLIC_OPENAI_KEY;
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    };
   const requestBody = JSON.stringify({
     model: 'gpt-3.5-turbo',
     messages: [

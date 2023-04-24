@@ -10,6 +10,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.54.0
   autoprefixer: ^10.4.13
   daisyui: ^2.51.3
+  dotenv: ^16.0.3
   eslint: ^8.35.0
   eslint-config-prettier: ^8.6.0
   eslint-plugin-svelte3: ^4.0.0
@@ -31,6 +32,7 @@ specifiers:
   vitest: ^0.25.8
 
 dependencies:
+  dotenv: 16.0.3
   gpt3-tokenizer: 1.1.5
   openai: 3.2.1
   sse.js: 0.6.1
@@ -1121,6 +1123,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /electron-to-chromium/1.4.320:
     resolution: {integrity: sha512-h70iRscrNluMZPVICXYl5SSB+rBKo22XfuIS1ER0OQxQZpKTnFpuS6coj7wY9M/3trv7OR88rRMOlKmRvDty7Q==}
