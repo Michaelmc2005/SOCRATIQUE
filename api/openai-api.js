@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const data = await response.json();
     res.status(200).send(data);
   } catch (error) {
-    console.error(error);
+    console.error('Error in serverless function:', error);
     res.status(500).send('Error processing request');
   }
 };
