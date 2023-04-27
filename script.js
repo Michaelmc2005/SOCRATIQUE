@@ -143,7 +143,7 @@ surroundingNodes.forEach((node) => {
     const requestBody = JSON.stringify({
       
       prompt: prompt,
-      model: "text-davinci-003",
+      model: "gpt-3.5-turbo",
       max_tokens: 120,
       n: 1,
       temperature: 0.5 // Change this value to adjust the temperature
