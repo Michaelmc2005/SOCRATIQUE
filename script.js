@@ -20,7 +20,7 @@ function dragStart(e) {
     isDragging = true;
   }
 }
-async function fetchMindMapResponse(prompt) {
+async function fetchChatGPTResponse(prompt) {
   const requestBody = JSON.stringify({
     messages: [
       { role: "system", content: prompt },
@@ -35,7 +35,7 @@ async function fetchMindMapResponse(prompt) {
     },
     body: requestBody,
   });
-  
+
   const data = await response.json();
   console.log("OpenAI API response:", data);
   console.log("Server response:", data);
@@ -46,7 +46,6 @@ async function fetchMindMapResponse(prompt) {
     throw new Error("Invalid response format");
   }
 }
-
 
 function drag(e) {
   if (isDragging) {
@@ -131,9 +130,8 @@ surroundingNodes.forEach((node) => {
     "and the main topic being" +
     centralNode.textContent;
 
-  const result = await fetchMindMapResponse(prompt);    
-    const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
+    const result = await fetchChatGPTResponse(prompt);
+    surroundingexpandNode[chooseEXPAND].textContent = result;
 
 
     const headers = {
@@ -219,40 +217,13 @@ inputField.addEventListener("keypress", async function (e) {
     "subtopics about" +
     inputField.value +
     "that appear in a list one after another with six elements in the list";
-
-  const result = await fetchMindMapResponse(prompt);    
-    const url = "https://api.openai.com/v1/completions"
-    const apiKey = "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"
-
-
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiKey}`
-    }
-
-
-    const requestBody = JSON.stringify({
-      prompt: prompt,
-      model: "text-davinci-003",
-      max_tokens: 120,
-      n: 1,
-      temperature: 0.5 // Change this value to adjust the temperature
-    })
-
-    console.log("Sending request to OpenAI API...")
-    fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: requestBody
-    })
+    const result = await fetchChatGPTResponse(prompt)
 
     .then(response => response.json())
     .then(data => {
       console.log("Received response from OpenAI API:", data)
-      const result = data.choices[0].text
-      console.log(result) 
       
-      const dataArray = result.split("\n"); // split the string into an array of substrings
+      const dataArray = result.split("\n");
 
       while (dataArray.length > 0 && dataArray[0].trim() === "") {
         dataArray.shift();
