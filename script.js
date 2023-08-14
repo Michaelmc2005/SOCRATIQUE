@@ -1,4 +1,3 @@
-
 const container = document.querySelector('.container');
 let isDragging = false;
 let initialX;
@@ -214,7 +213,7 @@ inputField.addEventListener("keypress", async function (e) {
     centralNode.textContent = inputField.value
     
     const prompt =
-    "subtopics about" +
+    "subtopics including and not specifically relating to, but allowing for about" +
     inputField.value +
     "that appear in a list one after another with six elements in the list";
     const result = await fetchChatGPTResponse(prompt)

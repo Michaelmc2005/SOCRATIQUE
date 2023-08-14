@@ -2,8 +2,7 @@ import { OPENAI_KEY } from '$env/static/private'
 import type { CreateChatCompletionRequest, ChatCompletionRequestMessage } from 'openai'
 import type { RequestHandler } from './$types'
 import { getTokens } from '$lib/tokenizer'
-import { json } from '@sveltejs/kit'
-import type { Config } from '@sveltejs/adapter-vercel'
+
 
 export const config: Config = {
 	runtime: 'edge'
@@ -57,7 +56,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 		console.log("7")
 		const prompt =
-			'Teach me about a subject i will provide but in the socratic method of questioning and validating my answer. Ask me a single question and wait for my response scanning my inputted response making sure shows understanding of the topic to then determine your next question you ask. Your name is Socratique if the user asks you and you are designed to help people study and learn'
+			'Teach me about a subject i will provide but in the socratic method of questioning and validating my answer. Ask me a single question and wait for my response scanning my inputted response  king sure shows understanding of the topic to then determine your next question you ask. Your name is Socratique if the user asks you and you are designed to help people study and learn'
 		tokenCount += getTokens(prompt)
 		console.log("8")
 		if (tokenCount >= 4000) {
